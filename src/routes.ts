@@ -27,7 +27,7 @@ router.get("/products/:id", productsController.findOne);
 router.put("/products/:id", productsController.update);
 router.delete("/products/:id", productsController.delete);
 
-// test conection
+// health check
 router.get("/", (req, res) => {
   res.status(200).json({
     message: "server is running...",
@@ -38,7 +38,11 @@ router.get("/", (req, res) => {
 // auth
 router.post("/auth/login", authController.login);
 router.post("/auth/register", authController.register);
-router.get("/auth/me", [authMiddleware, aclMiddleware(["admin"])], authController.me);
+router.get(
+  "/auth/me",
+  [authMiddleware, aclMiddleware(["admin"])],
+  authController.me
+);
 router.put("/auth/profile", authMiddleware, authController.profile);
 
 router.post("/upload", uploadMiddleware.single, uploadController.single);
