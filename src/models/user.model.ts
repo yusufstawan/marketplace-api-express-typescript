@@ -2,6 +2,8 @@ import mongoose from "mongoose";
 import { encrypt } from "@/utils/encryption";
 import { SECRET } from "@/utils/env";
 
+import mail from "@/utils/mail";
+
 const Schema = mongoose.Schema;
 
 const UserSchema = new Schema(
@@ -24,10 +26,12 @@ const UserSchema = new Schema(
       type: String,
       required: true,
     },
-    role: {
-      type: String,
-      default: "user",
-    },
+    roles: [
+      {
+        type: String,
+        default: "user",
+      },
+    ],
     profilePicture: {
       type: String,
       default: "default.jpg",
@@ -41,6 +45,25 @@ const UserSchema = new Schema(
 UserSchema.pre("save", async function (next) {
   const user = this;
   user.password = encrypt(SECRET, user.password);
+  next();
+});
+
+UserSchema.post("save", async function (doc, next) {
+  const user = doc;
+
+  // send email
+  console.log("Send Email to: ", user.email);
+
+  const content = await mail.render("register-success.ejs", {
+    username: user.username,
+  });
+
+  await mail.send({
+    to: user.email,
+    subject: "Registrasi Berhasil!",
+    content,
+  });
+
   next();
 });
 
