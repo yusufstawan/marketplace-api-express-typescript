@@ -2,8 +2,6 @@
 
 ## URL Deploy
 
-The project is currently deployed and available online. You can access the live application at :
-
 ```bash
 https://sanber-be-58-final-project-yusuf-production.up.railway.app/
 ```
@@ -162,14 +160,14 @@ Authorization: Bearer <your-jwt-token>
 - **Endpoint:** `/categories/:id`
 - **Method:** `GET`
 - **URL Parameters:**
-  - `id` (required): The ID of the .
+  - `id` (required)
 
-#### 4. **Update Categories **
+#### 4. **Update Categories**
 
 - **Endpoint:** `/categories/:id`
 - **Method:** `PUT`
 - **URL Parameters:**
-  - `id` (required): The ID of the .
+  - `id` (required)
 - **Request Body:**
 
 ```bash
@@ -178,12 +176,12 @@ Authorization: Bearer <your-jwt-token>
 }
 ```
 
-#### 5. **Delete Categories **
+#### 5. **Delete Categories**
 
 - **Endpoint:** `/categories/:id`
 - **Method:** `DELETE`
 - **URL Parameters:**
-  - `id` (required): The ID of the .
+  - `id` (required)
 
 ## Media Upload
 
