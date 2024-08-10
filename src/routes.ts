@@ -3,13 +3,14 @@ import express from "express";
 // middlewares
 import uploadMiddleware from "./middlewares/upload.middleware";
 import authMiddleware from "./middlewares/auth.middleware";
+import aclMiddleware from "./middlewares/acl.middleware";
 
 // controllers
 import uploadController from "./controllers/upload.controller";
 import productsController from "./controllers/products.controller";
 import categoriesController from "./controllers/categories.controller";
 import authController from "./controllers/auth.controller";
-import aclMiddleware from "./middlewares/acl.middleware";
+import ordersController from "./controllers/orders.controller";
 
 const router = express.Router();
 
@@ -26,6 +27,10 @@ router.post("/products", productsController.create);
 router.get("/products/:id", productsController.findOne);
 router.put("/products/:id", productsController.update);
 router.delete("/products/:id", productsController.delete);
+
+// orders
+router.post("/orders", authMiddleware, ordersController.create);
+router.get("/orders", authMiddleware, ordersController.findAll);
 
 // health check
 router.get("/", (req, res) => {

@@ -6,3 +6,9 @@ export interface IReqUser extends Request {
     id: string;
   };
 }
+
+export interface IPaginationQuery {
+  limit: number;
+  page: number;
+  search?: string;
+}
