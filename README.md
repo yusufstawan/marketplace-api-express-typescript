@@ -1,4 +1,17 @@
-# Final Project Yusuf Setiyawan BE 58
+## Final Project Yusuf Setiyawan BE 58
+
+## Tech Stack
+
+- Express
+- Typescript
+- Yup
+- MongoDB
+- Mongoose
+- Multer
+- Cloudinary
+- JWT
+- Nodemailer
+- EJS
 
 ## URL Deploy
 
